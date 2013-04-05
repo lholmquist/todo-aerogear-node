@@ -5,7 +5,9 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
+  , project = require('./routes/project')
+  , tag = require('./routes/tag')
+  , task = require('./routes/task')
   , http = require('http')
   , path = require('path');
 
@@ -29,7 +31,25 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+
+app.post('/projects', project.create);
+app.put('/projects/:id', project.update);
+app.get('/projects', project.findAll);
+app.get('/projects/:id', project.findById);
+app.delete('/projects/:id', project.deleteById);
+
+app.post('/tags', tag.create);
+app.put('/tags/:id', tag.update);
+app.get('/tags', tag.findAll);
+app.get('/tags/:id', tag.findById);
+app.delete('/tags/:id', tag.deleteById);
+
+app.post('/tasks', task.create);
+app.put('/tasks/:id', task.update);
+app.get('/tasks', task.findAll);
+app.get('/tasks/:id', task.findById);
+app.delete('/tasks/:id', task.deleteById);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
