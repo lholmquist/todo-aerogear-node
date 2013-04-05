@@ -29,13 +29,13 @@
 
         script/data.sh
         
-4. Open the application at http://localhost:3000
+6. Open the application at http://localhost:3000
 
 
-**Note**: Install *nodemon*, if you want to monitor any changes at your Node.js application and save your time.
+    **Note**: Install *nodemon*, if you want to monitor any changes at your Node.js application and save your time.
 
-    npm install nodemon
+        npm install nodemon
     
-Run the server
+    Run the server
 
-    nodemon app
+        nodemon app
