@@ -9,7 +9,8 @@ var express = require('express')
   , tag = require('./routes/tag')
   , task = require('./routes/task')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , consolidate = require('consolidate');
 
 var app = express();
 
@@ -30,7 +31,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.engine('html', consolidate.swig);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/public');
+
+app.get('/', function(req, res){
+  res.render('index');
+});
 
 app.post('/projects', project.create);
 app.put('/projects/:id', project.update);
